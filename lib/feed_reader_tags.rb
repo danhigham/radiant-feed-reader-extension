@@ -125,9 +125,13 @@ module FeedReaderTags
     if tag.attr['order'] == 'desc'
       entries = entries.reverse
     end
+    if tag.attr['offset']
+      entries = entries[tag.attr['offset'].to_i, entries.length - 1]
+    end
     if tag.attr['limit']
       entries = entries[0, tag.attr['limit'].to_i]
     end
+
     entries
   end
 end
